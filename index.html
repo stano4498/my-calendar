@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calendar Events Manager</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italianno&family=Meddon&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1>Calendar Events Manager</h1>
+
+  <form id="EventForm">
+    <label>Title:<br></label>
+    <input type="text" id="title" required><br><br>
+
+    <label>Date:<br></label>
+    <input type="date" id="date" required><br><br>
+
+    <label>Time:<br></label>
+    <input type="time" id="time" required><br><br>
+
+    <label>Location:<br></label>
+    <input type="text" id="location" required><br><br>
+
+    <button id="showAttendeeBtn" onclick="showAttendeeInfo(event)">Add Attendee</button>
+
+    <div id="Attendee" style="display:none;">
+      <label>Attendee:<br></label>
+      <input type="text" id="attendee"><br><br>
+
+      <label>Email:<br></label>
+      <input type="email" id="email"><br><br>
+
+      <label>Phone:<br></label>
+      <input type="tel" id="phone"><br><br>
+    </div>
+
+    <label>Description:<br></label>
+    <textarea id="description" rows="4" cols="50"></textarea><br><br>
+
+    <button type="submit" class="button1">Save</button>
+  </form>
+
+
+  <h1>All Scheduled Events</h1>
+  <table id="eventsTable" class="nunito-nice">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Location</th>
+        <th>Attendee</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  
+  <script>
+    function showAttendeeInfo(event) {
+      event.preventDefault();
+      document.getElementById("Attendee").style.display = "block";
+      document.getElementById("showAttendeeBtn").style.display = "none";
+    }
+
+    document.getElementById("EventForm").addEventListener("submit", function () {
+      
+      const event = {
+        title: document.getElementById("title").value,
+        date: document.getElementById("date").value,
+        time: document.getElementById("time").value,
+        location: document.getElementById("location").value,
+        attendee: document.getElementById("attendee").value || '-',
+        email: document.getElementById("email").value || '-',
+        phone: document.getElementById("phone").value || '-',
+        description: document.getElementById("description").value
+      };
+
+  
+      let events = JSON.parse(localStorage.getItem("events")) || [];
+      events.push(event);
+      localStorage.setItem("events", JSON.stringify(events));
+
+     
+      
+      document.getElementById("Attendee").style.display = "none";
+      alert("You have successfully added an event!")
+    
+    });
+  </script>
+
+  
+
+  <script>
+    const events = JSON.parse(localStorage.getItem("events")) || [];
+    const tableBody = document.querySelector("#eventsTable tbody");
+
+    events.forEach((event, index) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+      <td>${event.title}</td>
+      <td>${event.date}</td>
+      <td>${event.time}</td>
+      <td>${event.location}</td>
+      <td>${event.attendee || '-'}</td>
+      <td>${event.email || '-'}</td>
+      <td>${event.phone || '-'}</td>
+      <td>${event.description}</td>
+      <td><button onclick="deleteEvent(${index})">Delete</button></td>
+      `;
+      tableBody.appendChild(row);
+    });
+
+    function deleteEvent(index) {
+      const events = JSON.parse(localStorage.getItem("events"));
+      events.splice(index, 1);
+      localStorage.setItem("events", JSON.stringify(events));
+      location.reload();
+      alert("Event deleted successfully!");
+    }
+    ;
+  </script>
+
+</body>
+</html>

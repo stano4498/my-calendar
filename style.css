@@ -1,0 +1,148 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    background-color: #101820ff;
+  }
+  
+
+
+  h1 {
+    margin-top: 20px;
+    color: white;
+   
+  }
+
+  form {
+    display: inline-block;
+    text-align: left;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    background-color: #f2aa20ff;
+    font-size: 25px;
+    
+    width: 500px;
+    max-width: 90%;
+    transition: background-color 0.3s ease;
+    font-weight: bolder;
+  }
+
+  label, input, textarea, button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    
+  }
+  textarea{
+    width: 500px;
+    height: 70px;
+  }
+  input{
+    width: 500px;
+    height: 50px;
+  }
+
+ button:hover{
+    background-color: red;
+    color: white;
+
+ }
+ #showAttendeeBtn{
+    width: 80px;
+ }
+
+ .button1{
+    border-radius: 10px;
+    width: auto;
+    color: red;
+    margin: 0 auto;
+    display: block;
+    font-size: 20px;
+
+
+ }
+
+
+  table {
+    margin: 30px auto;
+    border-collapse: collapse;
+    width: 90%;
+    max-width: 1000px;
+    border-radius: 20px;
+    color: #FFFFFF;
+    background-color: #f2aa20ff
+  }
+  
+.nunito-nice {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
+  th, td {
+    padding: 12px;
+    border: 2px solid #ccc;
+    text-align: center;
+    color: black;
+    font-size: 19px;
+  }
+
+  th {
+    background-color: #e0e0e0;
+  }
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    form {
+        width: 90%;
+        padding: 15px;
+    }
+
+    textarea, input {
+        width: 100%;
+        height: auto;
+    }
+
+    table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    th, td {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .button1 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    form {
+        padding: 10px;
+    }
+
+    textarea, input {
+        font-size: 14px;
+    }
+
+    th, td {
+        font-size: 14px;
+    }
+
+    .button1 {
+        font-size: 14px;}
+}
